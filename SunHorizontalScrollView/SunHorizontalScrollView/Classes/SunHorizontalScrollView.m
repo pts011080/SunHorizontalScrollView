@@ -15,6 +15,11 @@
 @property (strong, nonatomic) NSArray *mediaContainer;
 @property (strong, nonatomic) UILabel *pageLabel;
 
+//Current page number (current showing last item index of collectionView)
+@property (nonatomic, assign) NSInteger currentPage;
+//Total Number of items in collectionView
+@property (nonatomic, assign) NSInteger totalPages;
+
 @end
 
 @implementation SunHorizontalScrollView
@@ -146,7 +151,7 @@
     [self updatePageLabel];
 }
 
--(NSInteger)totalPage{
+-(NSInteger)totalPages{
     return [self.mediaContainer count];
 }
 
@@ -170,7 +175,7 @@
 }
 
 -(void)updatePageLabel{
-    self.pageLabel.text =[NSString stringWithFormat:@"%d / %d", (int)self.currentPage, (int)self.totalPage];
+    self.pageLabel.text =[NSString stringWithFormat:@"%d / %d", (int)self.currentPage, (int)self.totalPages];
     /* update the label width */
     CGSize textSize = [[self.pageLabel text] sizeWithAttributes:@{NSFontAttributeName:[self.pageLabel font]}];
     CGFloat labelWidth = textSize.width;
