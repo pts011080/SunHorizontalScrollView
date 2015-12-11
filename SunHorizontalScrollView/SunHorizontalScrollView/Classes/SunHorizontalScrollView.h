@@ -38,5 +38,7 @@
 
 - (void)setBackgroundColor:(UIColor *)color;
 
+- (NSInteger)currentPage;
+- (NSInteger)totalPages;
 
 @end
