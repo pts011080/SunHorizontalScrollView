@@ -27,7 +27,6 @@
 		27F7AEE91BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F7AEE81BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.m */; };
 		27F7AEEA1BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F7AEE81BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.m */; };
 		27F7AEEB1BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F7AEE81BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.m */; };
-		5EB0667F1C1AA30000251DE2 /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0667E1C1AA30000251DE2 /* TestTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		65BA808456DD158B83C1D3AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5854CBC1592F1BE72963E45 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +74,6 @@
 		27F7AEE71BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunHorizontalScrollTableViewCell.h; sourceTree = "<group>"; };
 		27F7AEE81BA6C77D004950C3 /* SunHorizontalScrollTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunHorizontalScrollTableViewCell.m; sourceTree = "<group>"; };
 		3FF4D15F023D04A52B60E6B0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		5EB0667D1C1AA30000251DE2 /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
-		5EB0667E1C1AA30000251DE2 /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		C5854CBC1592F1BE72963E45 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -146,8 +143,6 @@
 				27F7AEA71BA6C735004950C3 /* AppDelegate.m */,
 				27F7AEA91BA6C735004950C3 /* ViewController.h */,
 				27F7AEAA1BA6C735004950C3 /* ViewController.m */,
-				5EB0667D1C1AA30000251DE2 /* TestTableViewController.h */,
-				5EB0667E1C1AA30000251DE2 /* TestTableViewController.m */,
 				27F7AEAC1BA6C735004950C3 /* Main.storyboard */,
 				27F7AEAF1BA6C735004950C3 /* Assets.xcassets */,
 				27F7AEB11BA6C735004950C3 /* LaunchScreen.storyboard */,
@@ -381,7 +376,6 @@
 				27F7AEE31BA6C75E004950C3 /* SunHorizontalScrollView.m in Sources */,
 				27F7AEAB1BA6C735004950C3 /* ViewController.m in Sources */,
 				27F7AEE01BA6C75E004950C3 /* SunHorizontalScrollMedia.m in Sources */,
-				5EB0667F1C1AA30000251DE2 /* TestTableViewController.m in Sources */,
 				27F7AEA81BA6C735004950C3 /* AppDelegate.m in Sources */,
 				27F7AEA51BA6C735004950C3 /* main.m in Sources */,
 				27F7AEDD1BA6C75E004950C3 /* SunHorizontalImageCollectionViewCell.m in Sources */,
