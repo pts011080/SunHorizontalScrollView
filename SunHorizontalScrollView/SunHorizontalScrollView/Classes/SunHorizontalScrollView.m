@@ -13,10 +13,20 @@
 @interface SunHorizontalScrollView () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) NSArray *mediaContainer;
+@property (strong, nonatomic) UILabel *pageLabel;
 
 @end
 
 @implementation SunHorizontalScrollView
+
+//-(id)init{
+//    self = [super init];
+//    if (self) {
+//        self.atRowIndex = -1;
+//        NSLog(@"_init: %@ at position: %ld", self,(long)self.atRowIndex);
+//    }
+//    return self;
+//}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -24,6 +34,8 @@
     self.collectionView.frame = self.frame;
 
     [self.collectionView reloadData];
+    
+    [self updatePageLabel];
 }
 
 - (void)setData:(NSArray *)collectionImageData {
@@ -31,9 +43,12 @@
 
     [self.collectionView setContentOffset:CGPointMake(0, 0) animated:NO];
 
-    [self addSubview:self.collectionView];
-
     [self.collectionView reloadData];
+    
+    //removed add subview of collectionView at 2015-12-11, moved to it's lazy instantiation method.
+    
+    self.currentPage = 1;
+    [self updatePageLabel];
 }
 
 - (void)setBackgroundColor:(UIColor *)color {
@@ -77,7 +92,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate collectionView:self didSelectItemAtIndexPath:indexPath];
+    if ([self.delegate respondsToSelector:@selector(didChangeValueForKey:)]) {
+        [self.delegate collectionView:self didSelectItemAtIndexPath:indexPath];
+    }
 }
 
 #pragma mark - get
@@ -104,8 +121,63 @@
         _collectionView.collectionViewLayout = self.flowLayout;
 
         [_collectionView registerClass:[SunHorizontalImageCollectionViewCell class] forCellWithReuseIdentifier:@"SunHorizontalImageCollectionViewCell"];
+        
+        [self addSubview:_collectionView]; //added at 2015-12-11
     }
     return _collectionView;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    //may casue memory issues, but show accurate last shown item page number.
+    NSInteger largeNumber = 0;
+    //actually the mobile device only have limited screen dimension to display numbers of items. There for I assume it is not a problem
+    for (UICollectionViewCell *cell in [self.collectionView visibleCells]) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        if (indexPath.row > largeNumber) {
+            largeNumber = indexPath.row;
+        }
+    }
+    /* // lite way for large amount of item showed, but lower accuracy.
+    UICollectionViewCell *lastVisableCell = [[self.collectionView visibleCells] lastObject];
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:lastVisableCell];
+    largeNumber = indexPath.row;
+    */
+    self.currentPage = largeNumber + 1;
+    [self updatePageLabel];
+}
+
+-(NSInteger)totalPage{
+    return [self.mediaContainer count];
+}
+
+-(NSInteger)currentPage{
+    if (!_currentPage) {
+        _currentPage = 1;
+    }
+    return _currentPage;
+}
+
+-(UILabel*)pageLabel{
+    if (!_pageLabel) {
+        _pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, self.frame.size.width, 30)];
+        _pageLabel.font = [UIFont systemFontOfSize:14 weight:1];
+        _pageLabel.textColor = [UIColor whiteColor];
+        _pageLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        _pageLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_pageLabel];
+    }
+    return _pageLabel;
+}
+
+-(void)updatePageLabel{
+    self.pageLabel.text =[NSString stringWithFormat:@"%d / %d", (int)self.currentPage, (int)self.totalPage];
+    /* update the label width */
+    CGSize textSize = [[self.pageLabel text] sizeWithAttributes:@{NSFontAttributeName:[self.pageLabel font]}];
+    CGFloat labelWidth = textSize.width;
+    [self.pageLabel setFrame:CGRectMake(20, 20, labelWidth + 10, 20)];
+    
+    /* can replace teh update the label width with one line code, but not good layout display with colored background.*/
+    //[self.pageLabel sizeToFit];
 }
 
 @end
