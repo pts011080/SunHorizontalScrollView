@@ -17,6 +17,7 @@ typedef NS_ENUM (NSUInteger, SunHorizontalScrollMediaType) {
      *  NSURL link of image on the web
      */
     SunHorizontalScrollMediaTypeImageURL,
+    SunHorizontalScrollMediaTypeUIImage,
 };
 
 @interface SunHorizontalScrollMedia : NSObject
