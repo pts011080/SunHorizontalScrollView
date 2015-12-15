@@ -8,7 +8,9 @@
 
 #import "SunHorizontalImageCollectionViewCell.h"
 
-#import "UIImageView+WebCache.h"
+//#import "UIImageView+WebCache.h"
+
+#import "AFNetworking.h"
 
 @interface SunHorizontalImageCollectionViewCell ()
 
@@ -28,8 +30,19 @@
 }
 
 - (void)setImageWithURL:(NSURL *)url {
-    [self.imageView sd_setImageWithURL:url];
-    [self.contentView addSubview:self.imageView];
+    [self.imageView setImageWithURL:url placeholderImage:nil];
+//    [self.imageView sd_setImageWithURL:url];
+//    [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+////        NSLog(@"Load image successful!");
+//        [self.imageView setImage:image];
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+////        NSLog(@"failed to laod image URL: %@",response.URL.absoluteString);
+//    }];
+//    [self.contentView addSubview:self.imageView];
+}
+
+- (void)setImageWithUIImage:(UIImage*)image{
+    [self.imageView setImage:image];
 }
 
 - (UIImageView *)imageView {
@@ -37,8 +50,13 @@
         _imageView = [UIImageView new];
         _imageView.contentMode   = UIViewContentModeScaleAspectFill;
         _imageView.clipsToBounds = YES;
+        [self.contentView addSubview:_imageView];
     }
     return _imageView;
+}
+
+-(void)clearImage{
+    [self.imageView setImage:nil];
 }
 
 @end
