@@ -17,24 +17,29 @@
     SunHorizontalScrollMedia *mediaObject = [[SunHorizontalScrollMedia alloc] init];
     mediaObject.type = type;
     mediaObject.object = object;
-
+    
     return mediaObject;
 }
 
 - (NSString *)description {
     NSString *type;
-
+    
     switch (self.type) {
         case SunHorizontalScrollMediaTypeImageURL:
-          {
-        type = @"image url";
-        break;
-          }
+        {
+            type = @"image url";
+            break;
+        }
+        case SunHorizontalScrollMediaTypeUIImage:
+        {
+            type = @"image url";
+            break;
+        }
             break;
         default:
             break;
     }
-
+    
     return [NSString stringWithFormat:@"Type:%@, Object:%@",type, [self.object class]];
 }
 
