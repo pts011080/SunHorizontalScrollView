@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name         = "SunHorizontalScrollView"
   s.version      = "0.0.5"
   s.summary      = "An easy-to-use UIView subclass that implements a scrolling effect UIView with images"
-  s.homepage     = "https://github.com/sunbohong/SunHorizontalScrollView"
+  s.homepage     = "https://github.com/pts011080/SunHorizontalScrollView"
   s.license      = "MIT"
   s.author       = { "孙博弘" => "sunbohong@gmail.com" }
   s.platform     = :ios, "7.0"
