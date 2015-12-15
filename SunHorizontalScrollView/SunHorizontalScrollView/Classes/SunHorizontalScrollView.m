@@ -78,6 +78,8 @@
 
     if (!cell) {
         cell = [[SunHorizontalImageCollectionViewCell alloc] init];
+    }else{
+        [cell clearImage];
     }
 
     if ([mediaObject isKindOfClass:[NSString class]] || [mediaObject isKindOfClass:[NSURL class]]) {
@@ -89,6 +91,11 @@
 
                 [cell setImageWithURL:horizontalScrollMedia.object];
 
+                break;
+            case SunHorizontalScrollMediaTypeUIImage:
+                
+                [cell setImageWithUIImage:horizontalScrollMedia.object];
+                
                 break;
         }
     }
