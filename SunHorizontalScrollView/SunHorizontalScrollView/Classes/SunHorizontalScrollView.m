@@ -104,7 +104,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(didChangeValueForKey:)]) {
+    if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
         [self.delegate collectionView:self didSelectItemAtIndexPath:indexPath];
     }
 }
