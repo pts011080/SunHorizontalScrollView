@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/pts011080/SunHorizontalScrollView.git", :tag => s.version.to_s }
   s.source_files  = "Classes", "SunHorizontalScrollView/SunHorizontalScrollView/Classes/*.{h,m}"
   s.requires_arc = true
-  s.dependency "AFNetworking"
+  s.dependency "AFNetworking", '~> 1.0'
 end
