@@ -16,6 +16,7 @@
  *  @param image url
  */
 - (void)setImageWithURL:(NSURL *)url;
-
+- (void)setImageWithUIImage:(UIImage*)image;
+- (void)clearImage;
 
 @end
