@@ -10,9 +10,9 @@
 
 #import "SunHorizontalImageCollectionViewCell.h"
 
-@interface SunHorizontalScrollView () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SunHorizontalScrollView () <UICollectionViewDataSource, UICollectionViewDelegate,SunHorizontalImageCollectionViewCellDelegate>
 
-@property (strong, nonatomic) NSArray *mediaContainer;
+@property (strong, nonatomic) NSMutableArray *mediaContainer;
 @property (strong, nonatomic) UILabel *pageLabel;
 
 //Current page number (current showing last item index of collectionView)
@@ -43,8 +43,8 @@
     [self updatePageLabel];
 }
 
-- (void)setData:(NSArray *)collectionImageData {
-    self.mediaContainer = collectionImageData;
+- (void)setData:(NSMutableArray *)collectionImageData {
+    self.mediaContainer = [collectionImageData mutableCopy];
 
     [self.collectionView setContentOffset:CGPointMake(0, 0) animated:NO];
 
@@ -70,6 +70,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     id mediaObject = self.mediaContainer[indexPath.row];
 
     static NSString *cellReuseIdentify = @"SunHorizontalImageCollectionViewCell";
@@ -81,7 +82,10 @@
     }else{
         [cell clearImage];
     }
-
+    
+    cell.delegate = self;
+    cell.isEditmode = self.isEditmode;
+    
     if ([mediaObject isKindOfClass:[NSString class]] || [mediaObject isKindOfClass:[NSURL class]]) {
         [cell setImageWithURL:mediaObject];
     } else {
@@ -182,6 +186,9 @@
 }
 
 -(void)updatePageLabel{
+    if (self.totalPages < self.currentPage) {
+        self.currentPage = self.totalPages;
+    }
     self.pageLabel.text =[NSString stringWithFormat:@"%d / %d", (int)self.currentPage, (int)self.totalPages];
     /* update the label width */
     CGSize textSize = [[self.pageLabel text] sizeWithAttributes:@{NSFontAttributeName:[self.pageLabel font]}];
@@ -190,6 +197,31 @@
     
     /* can replace teh update the label width with one line code, but not good layout display with colored background.*/
     //[self.pageLabel sizeToFit];
+}
+
+- (void)setIsEditmode:(BOOL)isEditmode{
+    NSLog(@"is editmote? %@",isEditmode?@"YES":@"NO");
+    _isEditmode = isEditmode;
+    self.pageLabel.hidden = isEditmode;
+}
+
+#pragma mark -- SunHorizontalImageCollectionViewCellDelegate
+-(void)collectionViewCell:(SunHorizontalImageCollectionViewCell *)collectionViewCell accessoryButton:(UIButton *)accessoryButton{
+    NSLog(@"%@ cell delebutton pressed!",collectionViewCell);
+    if ([self.delegate respondsToSelector:@selector(collectionView:shouldRemoveItemAtIndexPath:)]) {
+        NSIndexPath *indexpath =[self.collectionView indexPathForCell:collectionViewCell];
+        if ([self.delegate collectionView:self shouldRemoveItemAtIndexPath:indexpath] ) {
+            NSLog(@"Should remove the cell.");
+            [self.mediaContainer removeObjectAtIndex:(int)indexpath.row];
+//            [self setData:[self.mediaContainer mutableCopy]];
+            [self.collectionView reloadData];
+            [self updatePageLabel];
+        }else{
+            NSLog(@"Don't remove the cell!");
+        }
+    }
+    
+    
 }
 
 @end
