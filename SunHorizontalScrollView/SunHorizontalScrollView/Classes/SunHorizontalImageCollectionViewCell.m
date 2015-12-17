@@ -27,6 +27,9 @@
                                       0.0,
                                       CGRectGetWidth(self.frame),
                                       CGRectGetHeight(self.frame) );
+    self.accessoryButton.frame = CGRectMake(self.frame.size.width - 50, self.frame.size.height - 50, 40, 40);
+
+    self.accessoryButton.hidden = !self.isEditmode;
 }
 
 - (void)setImageWithURL:(NSURL *)url {
@@ -55,8 +58,27 @@
     return _imageView;
 }
 
+- (UIButton*)accessoryButton{
+    if (!_accessoryButton) {
+        _accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_accessoryButton addTarget:self action:@selector(accessoryButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_accessoryButton setTitle:@"X" forState:UIControlStateNormal];
+//        [_accessoryButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        [_accessoryButton setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.3]];
+        [self addSubview:_accessoryButton];
+    }
+    return _accessoryButton;
+}
+
 -(void)clearImage{
     [self.imageView setImage:nil];
+}
+
+-(void)accessoryButtonAction:(UIButton *)sender{
+    NSLog(@"%@ button pressed!",sender);
+    if ([self.delegate respondsToSelector:@selector(collectionViewCell:accessoryButton:)]) {
+        [self.delegate collectionViewCell:self accessoryButton:sender];
+    }
 }
 
 @end
