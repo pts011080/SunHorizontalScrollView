@@ -6,9 +6,24 @@
 //  Copyright (c) 2015年 孙博弘. All rights reserved.
 //
 
+@class SunHorizontalImageCollectionViewCell;
+
+@protocol SunHorizontalImageCollectionViewCellDelegate <NSObject>
+
+- (void)collectionViewCell:(SunHorizontalImageCollectionViewCell *)collectionViewCell accessoryButton:(UIButton *)accessoryButton;
+
+@end
+
 #import <UIKit/UIKit.h>
 
 @interface SunHorizontalImageCollectionViewCell : UICollectionViewCell
+
+@property (weak, nonatomic) id<SunHorizontalImageCollectionViewCellDelegate> delegate;
+
+@property (strong, nonatomic) UIButton *accessoryButton;
+
+//Delete item added 2015-12-17
+@property (nonatomic, assign) BOOL isEditmode;
 
 /**
  *  set image downloaded from web
