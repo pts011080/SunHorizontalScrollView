@@ -85,6 +85,7 @@
     
     cell.delegate = self;
     cell.isEditmode = self.isEditmode;
+    cell.accessoryButtonImage = self.accessoryButtonImage;
     
     if ([mediaObject isKindOfClass:[NSString class]] || [mediaObject isKindOfClass:[NSURL class]]) {
         [cell setImageWithURL:mediaObject];
