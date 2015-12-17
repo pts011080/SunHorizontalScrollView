@@ -15,6 +15,7 @@
 @protocol SunHorizontalScrollViewDelegate <NSObject>
 
 - (void)collectionView:(SunHorizontalScrollView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)collectionView:(SunHorizontalScrollView *)collectionView shouldRemoveItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -33,8 +34,11 @@
 //For other customised tableview cell to store the row index
 @property (nonatomic, assign) NSInteger atRowIndex;
 
+//Delete item added 2015-12-17
+@property (nonatomic, assign) BOOL isEditmode;
+
 // you can use NSString or NSURL or SunHorizontalScrollMedia
-- (void)setData:(NSArray *)collectionImageData;
+- (void)setData:(NSMutableArray *)collectionImageData;
 
 - (void)setBackgroundColor:(UIColor *)color;
 
