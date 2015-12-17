@@ -36,6 +36,7 @@
 
 //Delete item added 2015-12-17
 @property (nonatomic, assign) BOOL isEditmode;
+@property (nonatomic, strong) UIImage *accessoryButtonImage;
 
 // you can use NSString or NSURL or SunHorizontalScrollMedia
 - (void)setData:(NSMutableArray *)collectionImageData;
