@@ -30,6 +30,11 @@
     self.accessoryButton.frame = CGRectMake(self.frame.size.width - 50, self.frame.size.height - 50, 40, 40);
 
     self.accessoryButton.hidden = !self.isEditmode;
+    if (self.accessoryButtonImage != nil) {
+        [self.accessoryButton setImage:self.accessoryButtonImage forState:UIControlStateNormal];
+//        [self.accessoryButton setImage:self.accessoryButtonImage forState:UIControlStateHighlighted];
+        [self.accessoryButton setTitle:@"" forState:UIControlStateNormal];
+    }
 }
 
 - (void)setImageWithURL:(NSURL *)url {
