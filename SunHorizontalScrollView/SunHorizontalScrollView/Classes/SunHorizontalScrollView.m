@@ -145,21 +145,9 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    //may casue memory issues, but show accurate last shown item page number.
-    NSInteger largeNumber = 0;
-    //actually the mobile device only have limited screen dimension to display numbers of items. There for I assume it is not a problem
-    for (UICollectionViewCell *cell in [self.collectionView visibleCells]) {
-        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-        if (indexPath.row > largeNumber) {
-            largeNumber = indexPath.row;
-        }
-    }
-    /* // lite way for large amount of item showed, but lower accuracy.
-    UICollectionViewCell *lastVisableCell = [[self.collectionView visibleCells] lastObject];
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:lastVisableCell];
-    largeNumber = indexPath.row;
-    */
-    self.currentPage = largeNumber + 1;
+    CGFloat targetX = scrollView.contentOffset.x;
+    CGFloat targetIndex = round(targetX / (self.flowLayout.itemSize.width + self.flowLayout.minimumLineSpacing));
+    self.currentPage = targetIndex + 1;
     [self updatePageLabel];
 }
 
