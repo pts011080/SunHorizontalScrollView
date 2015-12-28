@@ -225,4 +225,18 @@
     
 }
 
+//Credit: http://stackoverflow.com/questions/6813270/uiscrollview-custom-paging-size lucius and Kevin Hirsch
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    CGFloat targetX = scrollView.contentOffset.x + velocity.x * 60.0;
+    CGFloat targetIndex = round(targetX / (self.flowLayout.itemSize.width + self.flowLayout.minimumLineSpacing));
+    
+    if (velocity.x > 0) {
+        targetIndex = ceil(targetX / (self.flowLayout.itemSize.width + self.flowLayout.minimumLineSpacing));
+    } else {
+        targetIndex = floor(targetX / (self.flowLayout.itemSize.width + self.flowLayout.minimumLineSpacing));
+    }
+    targetContentOffset->x = targetIndex * (self.flowLayout.itemSize.width + self.flowLayout.minimumLineSpacing);
+}
+
 @end
