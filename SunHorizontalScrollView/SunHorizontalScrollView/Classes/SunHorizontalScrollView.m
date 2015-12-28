@@ -33,15 +33,15 @@
 //    return self;
 //}
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+// - (void)layoutSubviews {
+//     [super layoutSubviews];
 
-    self.collectionView.frame = self.frame;
+//     self.collectionView.frame = self.frame;
 
-    [self.collectionView reloadData];
+//     [self.collectionView reloadData];
     
-    [self updatePageLabel];
-}
+//     [self updatePageLabel];
+// }
 
 - (void)setData:(NSMutableArray *)collectionImageData {
     self.mediaContainer = [collectionImageData mutableCopy];
