@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) UIImageView *imageView;
 
+@property (nonatomic, strong) UILabel *indexLabel;
+
 @end
 
 @implementation SunHorizontalImageCollectionViewCell
@@ -77,12 +79,39 @@
 
 -(void)clearImage{
     [self.imageView setImage:nil];
+    [self.indexLabel setText:@""];
+    self.indexLabel.hidden = YES;
 }
 
 -(void)accessoryButtonAction:(UIButton *)sender{
     NSLog(@"%@ button pressed!",sender);
     if ([self.delegate respondsToSelector:@selector(collectionViewCell:accessoryButton:)]) {
         [self.delegate collectionViewCell:self accessoryButton:sender];
+    }
+}
+
+-(UILabel*)indexLabel{
+    if (!_indexLabel) {
+        _indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.frame.size.width, 30)];
+        _indexLabel.font = [UIFont systemFontOfSize:14 weight:1];
+        _indexLabel.textColor = [UIColor whiteColor];
+        _indexLabel.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.7];
+        _indexLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_indexLabel];
+    }
+    return _indexLabel;
+}
+
+-(void)setAtPage:(int)atPage withTotalPage:(int)totalPage{
+    [self.indexLabel setText:[NSString stringWithFormat:@"%d / %d",atPage,totalPage]];
+    if (self.indexLabel.text.length > 0) {
+        /* update the label width */
+        CGSize textSize = [[self.indexLabel text] sizeWithAttributes:@{NSFontAttributeName:[self.indexLabel font]}];
+        CGFloat labelWidth = textSize.width;
+        [self.indexLabel setFrame:CGRectMake(10, 10, labelWidth + 10, 20)];
+        self.indexLabel.hidden = NO;
+    }else{
+        self.indexLabel.hidden = YES;
     }
 }
 
