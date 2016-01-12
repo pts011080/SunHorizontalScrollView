@@ -103,8 +103,9 @@
                 
                 break;
         }
-        [cell setAtPage:indexPath.row+1 withTotalPage:self.mediaContainer.count];
     }
+    
+    [cell setAtPage:(int)indexPath.row+1 withTotalPage:(int)self.mediaContainer.count];
 
     return cell;
 }
@@ -170,6 +171,7 @@
         _pageLabel.textColor = [UIColor whiteColor];
         _pageLabel.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.7];
         _pageLabel.textAlignment = NSTextAlignmentCenter;
+        _pageLabel.hidden = YES;
         [self addSubview:_pageLabel];
     }
     return _pageLabel;
@@ -187,6 +189,13 @@
     
     /* can replace teh update the label width with one line code, but not good layout display with colored background.*/
     //[self.pageLabel sizeToFit];
+    
+//    if (self.showPageLabel == YES) {
+//        self.pageLabel.hidden = NO;
+//    }else{
+//        self.pageLabel.hidden = YES;
+//    }
+    
 }
 
 - (void)setIsEditmode:(BOOL)isEditmode{
