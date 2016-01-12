@@ -26,6 +26,7 @@
 @property (nonatomic, assign) BOOL isEditmode;
 @property (nonatomic, strong) UIImage *accessoryButtonImage;
 
+
 /**
  *  set image downloaded from web
  *
@@ -34,5 +35,7 @@
 - (void)setImageWithURL:(NSURL *)url;
 - (void)setImageWithUIImage:(UIImage*)image;
 - (void)clearImage;
+
+- (void)setAtPage:(int)atPage withTotalPage:(int)totalPage;
 
 @end
