@@ -38,6 +38,8 @@
 @property (nonatomic, assign) BOOL isEditmode;
 @property (nonatomic, strong) UIImage *accessoryButtonImage;
 
+//@property (nonatomic, assign) BOOL showPageLabel;
+
 // you can use NSString or NSURL or SunHorizontalScrollMedia
 - (void)setData:(NSMutableArray *)collectionImageData;
 
