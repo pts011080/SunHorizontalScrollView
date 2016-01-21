@@ -109,7 +109,9 @@
         CGSize textSize = [[self.indexLabel text] sizeWithAttributes:@{NSFontAttributeName:[self.indexLabel font]}];
         CGFloat labelWidth = textSize.width;
         [self.indexLabel setFrame:CGRectMake(10, 10, labelWidth + 10, 20)];
-        self.indexLabel.hidden = NO;
+        if (totalPage > 1) {
+            self.indexLabel.hidden = NO;
+        }
     }else{
         self.indexLabel.hidden = YES;
     }
