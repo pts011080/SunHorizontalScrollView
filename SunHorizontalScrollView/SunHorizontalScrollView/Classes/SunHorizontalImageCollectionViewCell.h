@@ -26,6 +26,8 @@
 @property (nonatomic, assign) BOOL isEditmode;
 @property (nonatomic, strong) UIImage *accessoryButtonImage;
 
+//placeHolder
+@property (nonatomic, strong) UIImage *placeHolderImage;
 
 /**
  *  set image downloaded from web
