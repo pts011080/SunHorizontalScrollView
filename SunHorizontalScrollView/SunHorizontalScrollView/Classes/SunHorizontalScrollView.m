@@ -83,6 +83,10 @@
         [cell clearImage];
     }
     
+    if (self.placeHolderImage) {
+        cell.placeHolderImage = self.placeHolderImage;
+    }
+    
     cell.delegate = self;
     cell.isEditmode = self.isEditmode;
     cell.accessoryButtonImage = self.accessoryButtonImage;
