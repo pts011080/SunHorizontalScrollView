@@ -40,7 +40,7 @@
 }
 
 - (void)setImageWithURL:(NSURL *)url {
-    [self.imageView setImageWithURL:url placeholderImage:nil];
+    [self.imageView setImageWithURL:url placeholderImage:(self.placeHolderImage)?self.placeHolderImage:nil];
 //    [self.imageView sd_setImageWithURL:url];
 //    [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
 ////        NSLog(@"Load image successful!");
