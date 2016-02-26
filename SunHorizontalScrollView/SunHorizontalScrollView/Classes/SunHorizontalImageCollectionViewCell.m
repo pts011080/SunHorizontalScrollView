@@ -93,7 +93,7 @@
 -(UILabel*)indexLabel{
     if (!_indexLabel) {
         _indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.frame.size.width, 30)];
-        _indexLabel.font = [UIFont systemFontOfSize:14 weight:1];
+        _indexLabel.font = [UIFont systemFontOfSize:14];
         _indexLabel.textColor = [UIColor whiteColor];
         _indexLabel.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.7];
         _indexLabel.textAlignment = NSTextAlignmentCenter;
